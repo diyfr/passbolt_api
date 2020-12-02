@@ -57,8 +57,8 @@ class AccountCreationForm extends Form
             ->requirePresence('username', 'create', __('A username is required.'))
             ->notEmpty('username', __('A username is required.'))
             ->maxLength('username', 255, __('The username length should be maximum {0} characters.', 255))
-            ->email('username', Configure::read('passbolt.email.validate.mx'), __('The username should be a valid email address.'));
-
+            ->email('username', Configure::read('passbolt.email.validate.mx'), __('The username should be a valid email address.'))
+            ->add('username',['rule' => Configure::read('passbolt.email.validate.domain'), 'message' => 'This email address is unauthorized']);
         return $validator;
     }
 
